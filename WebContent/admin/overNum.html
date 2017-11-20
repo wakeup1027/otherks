@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>过期的号码</title>
+<link rel="stylesheet" href="${BASE_PATH}css/zxf_page.css" />
+<script src="${BASE_PATH}js/jquery.js"></script>
+<script type="text/javascript" src="${BASE_PATH}js/zxf_page.js"></script>
+<style>
+	.taclass td,.taclass th{border-right:1px solid #e1e1e1; border-top:1px solid #e1e1e1;}
+</style>
+</head>
+<body>
+<!--<div onclick="addNum()" style="padding:10px 35px; border:none; cursor:pointer; outline:none; background:#3C6CC7; border-radius:5px; color:#fff; float:left;">添加开奖记录</div>-->
+<div onclick="addAutoNum()" style="padding:10px 35px; margin-left:15px; border:none; cursor:pointer; outline:none; background:#3C6CC7; border-radius:5px; color:#fff; float:left;">一键添加数据</div>
+<div onclick="cleatLogNum()" style="padding:10px 35px; border:none; cursor:pointer; outline:none; background:#ff0000; border-radius:5px; color:#fff; float:left; margin-left:100px;">清空数据</div>
+<div style="clear:both;"></div>
+<table class="taclass" border="0" cellpadding="5" cellspacing="0" style="background:#ccc; margin-top:15px; width:750px; border-left:1px solid #e1e1e1;">
+	<tr>
+		<th style="width:152px;">期号</th>
+		<th style="width:158px;">号码</th>
+		<th style="width:209px;">创建时间</th>
+		<th style="width:230px;">操作</th>
+	</tr>
+</table>
+<table class="taclass" id="dateBox" border="0" cellpadding="5" cellspacing="0" style="width:750px; text-align:center; border-left:1px solid #e1e1e1; border-bottom:1px solid #e1e1e1;">
+	<% if( dateList != null && dateList.~size > 0 ){var i=0;%>
+	<% for(item in dateList){if(i<10){%>
+	<tr>
+		<td style="width:152px;">${item.qiNum}</td>
+		<td style="width:158px;">${item.Num}</td>
+		<td style="width:209px;">${item.creantime}</td>
+		<td style="width:230px;"><button onclick="delthis(${item.id})" style="cursor:pointer;">删除</button><button onclick="upthis(${item.id})" style="cursor:pointer;margin-left:5px;">修改创建时间</button></td>
+	</tr>
+	<%i++;}else{break;}}}%>
+</table>
+<div class="zxf_pagediv" style="width:700px; margin-top: 30px;"></div>
+
+<div id="opendResult" style="width:450px; padding-bottom:15px; margin:0px auto; margin-top:100px; position: absolute;  display: none;
+    top: 10px;   left: 15%;  background: #fff;  box-shadow: 0px 0px 50px #ccc;">
+    <div style="padding:10px 20px; background:#3C6CC7; color:#fff;">新建开奖号码</div>
+    <div style="padding: 15px;">
+	<table>
+		<tr>
+			<th style="text-align:right;">期号：</th>
+			<td>
+				<input id="qiNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+		<tr>
+			<th>开奖号码：</th>
+			<td>
+				<input id="firstNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+				<input id="secondNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+				<input id="threeNum" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:50px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+		<tr>
+			<th style="text-align:right;">创建时间：</th>
+			<td>
+				<input id="creantime" type="text" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<button onclick="sureBtn()" style="padding:10px 35px; border:none; cursor:pointer; margin-left:20px; outline:none; background:#3C6CC7; border-radius:5px; color:#fff;">确 定</button>
+</div>
+
+<div id="opendResult2" style="width:450px; padding-bottom:15px; margin:0px auto; margin-top:100px; position: absolute;  display: none;
+    top: 10px;   left: 15%;  background: #fff;  box-shadow: 0px 0px 50px #ccc;">
+    <div style="padding:10px 20px; background:#3C6CC7; color:#fff;">一键添加开奖号码</div>
+    <div style="padding: 15px;">
+	<table>
+		<tr>
+			<th style="text-align:right;">数据条数：</th>
+			<td>
+				<input id="forNum" type="text" placeholder="请输入增加多少条数据" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+		<tr>
+			<th>相隔时间：</th>
+			<td>
+				<input id="timeNum" type="text" placeholder="请输入间隔的时间（单位/分）" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+		<tr>
+			<th style="text-align:right;">创建日期：</th>
+			<td>
+				<input id="dateStr" type="text" placeholder="格式：YYYY-MM-DD HH:mm:ss" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<button onclick="sureBtnYes()" style="padding:10px 35px; border:none; cursor:pointer; margin-left:20px; outline:none; background:#3C6CC7; border-radius:5px; color:#fff;">确 定</button>
+</div>
+
+<div id="opendResult3" style="width:450px; padding-bottom:15px; margin:0px auto; margin-top:100px; position: absolute;  display: none;
+    top: 10px;   left: 15%;  background: #fff;  box-shadow: 0px 0px 50px #ccc;">
+    <div style="padding:10px 20px; background:#3C6CC7; color:#fff;">修改开奖时间</div>
+    <div style="padding: 15px;">
+	<table>
+		<tr>
+			<th style="text-align:right;">新的开奖时间：</th>
+			<td>
+				<input id="dateNum" type="hidden"/>
+				<input id="creanTime2" type="text" placeholder="请输入新的开奖时间（格式请严格按照之前的格式）" style="border:1px solid #e1e1e1; padding:10px 20px; width:243px; border-radius:5px; outline:none;"/>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<button onclick="sureUp()" style="padding:10px 35px; border:none; cursor:pointer; margin-left:20px; outline:none; background:#3C6CC7; border-radius:5px; color:#fff;">确 定</button>
+</div>
+<script>
+var date = [];
+var coutPage=10; //一页显示的数据数
+
+<% if( dateList != null && dateList.~size > 0 ){ %>
+	<% for(item in dateList){ %>
+			date.push(FormJson("${item.qiNum}","${item.Num}","${item.creantime}"));
+	<%}
+}%>
+
+$(function(){
+	$(".zxf_pagediv").createPage({
+		pageNum: Math.ceil((date.length)/coutPage), //总页数
+		current: 1, //选中页
+		backfun: function(e) {
+			$("#dateBox").html("");
+			for(var j=(e.current-1)*coutPage; j<e.current*coutPage; j++){
+				if(j<date.length){
+					var ali = '<tr><td style="width:152px;">'+date[j].qiNum+'</td><td style="width:158px;">'+date[j].Num+'</td><td style="width:209px;">'+date[j].creantime+'</td><td style="width:230px;"><button onclick="delthis('+date[j].id+')" style="cursor:pointer;">删除</button><button onclick="upthis('+date[j].id+')" style="cursor:pointer;margin-left:5px;">修改创建时间</button></td></tr>';
+					$("#dateBox").append(ali);
+				}
+			}
+		}
+	});
+});
+
+function addNum(){
+	$("#opendResult").css("display","block");
+}
+
+function addAutoNum(){
+	$("#opendResult2").css("display","block");
+}
+
+function upthis(num){
+	$("#opendResult3").css("display","block"); creanTime2
+	$("#dateNum").val(num);
+}
+
+function sureUp(){
+	var id = $("#dateNum").val().trim();
+	var creanTime2 = $("#creanTime2").val().trim();
+	$.ajax({
+			url:"${BASE_PATH}info/createUpNum",
+			type:"POST",
+			data:{
+				"id":id,
+				"creantime":creanTime2
+			},
+			dataType:"json",
+			success: function(res) {
+				if(res.state=="success"){
+					location.reload();
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+	});
+}
+
+var fals = true;
+var fals2 = true;
+function sureBtn(){
+	var firstNum = $("#firstNum").val().trim();
+	var secondNum = $("#secondNum").val().trim();
+	var threeNum = $("#threeNum").val().trim();
+	var qiNum = $("#qiNum").val().trim();
+	var creantime = $("#creantime").val().trim();
+	console.log(qiNum+","+firstNum+","+secondNum+","+threeNum);
+	if(qiNum==""){
+		alert("请填写期号");
+		return;
+	}
+	if(firstNum==""||secondNum==""||threeNum==""){
+		alert("号码还没填全！");
+		return;
+	}
+	
+	if(isNaN(firstNum)){
+		alert("第一位不是数字");
+		return;
+	}
+	
+	if(isNaN(secondNum)){
+		alert("第二位不是数字");
+		return;
+	}
+	
+	if(isNaN(threeNum)){
+		alert("第三位不是数字");
+		return;
+	}
+	
+	if(firstNum.length>1){
+		alert("第一位只能输入一个数字");
+		return;
+	}
+	
+	if(secondNum.length>1){
+		alert("第二位只能输入一个数字");
+		return;
+	}
+	
+	if(threeNum.length>1){
+		alert("第三位只能输入一个数字");
+		return;
+	}
+	
+	if(firstNum>6){
+		alert("第一位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(secondNum>6){
+		alert("第二位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(threeNum>6){
+		alert("第三位输入错误，只能小于6的数值");
+		return;
+	}
+	
+	if(fals){
+		fals = false;
+		$.ajax({
+			url:"${BASE_PATH}info/saveOldNum",
+			type:"POST",
+			data:{
+				"qiNum":qiNum,
+				"creantime":creantime,
+				"firstNum":firstNum,
+				"secondNum":secondNum,
+				"threeNum":threeNum
+			},
+			dataType:"json",
+			success: function(res) {
+				alert(res.msg);
+				if(res.state=="success"){
+					location.reload();
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+	}
+}
+
+function sureBtnYes(){  
+	var forNum = $("#forNum").val().trim();
+	var timeNum = $("#timeNum").val().trim();
+	var dateStr = $("#dateStr").val().trim();
+	
+	if(forNum==""||timeNum==""||dateStr==""){
+		alert("号码还没填全！");
+		return;
+	}
+	
+	if(forNum==""){
+		alert("请填写数据的条数");
+		return;
+	}
+	if(isNaN(forNum)){
+		alert("数据的条数必须为数字");
+		return;
+	}
+	if(parseInt(forNum)>200){
+		alert("每次只能插入小于200条数据");
+		return;
+	}
+	if(timeNum==""){
+		alert("请填写时间间隔");
+		return;
+	}
+	if(isNaN(timeNum)){
+		alert("时间间隔必须为数字");
+		return;
+	}
+	
+	if(fals2){
+		fals2 = false;
+		$.ajax({
+			url:"${BASE_PATH}info/iptAutoNum",
+			type:"POST",
+			data:{
+				"forNum":forNum,
+				"timeNum":timeNum,
+				"dateStr":dateStr
+			},
+			dataType:"json",
+			success: function(res) {
+				if(res.state=="success"){
+					location.reload();
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+	}
+}
+
+function delthis(num){
+	var r=confirm("确定要删除该记录吗？")
+  	if (r==true){
+    	$.ajax({
+			url:"${BASE_PATH}info/delOldNum",
+			type:"POST",
+			data:{
+				"num":num
+			},
+			dataType:"json",
+			success: function(res) {
+				if(res.state=="success"){
+					location.reload();
+				}else{
+					alert(res.msg);
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+    }else{
+   		window.location.reload()
+    }
+}
+
+function cleatLogNum(){
+	var r=confirm("确定要清空这些记录吗？注意：期号也会重新从1开始计算")
+  	if (r==true){
+    	$.ajax({
+			url:"${BASE_PATH}info/cleatLogNum",
+			type:"POST",
+			dataType:"json",
+			success: function(res) {
+				if(res.state=="success"){
+					location.reload();
+				}
+			},error:function(){
+				alert("请求错误！");
+			}
+		});
+    }else{
+   		window.location.reload()
+    }
+}
+
+function FormJson(qiNum,Num,creantime){
+	var json = {};
+	json.qiNum = qiNum;
+	json.Num = Num;
+	json.creantime = creantime;
+	return json;
+}
+</script>
+</body>
+</html>
