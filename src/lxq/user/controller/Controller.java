@@ -6,7 +6,6 @@ import java.util.Map;
 
 import lxq.user.util.DateUtil;
 import lxq.user.util.FormString;
-import lxq.user.util.TaskNumber;
 import lxq.user.util.Tiemer;
 import lxq.user.util.TiemerSecond;
 
@@ -274,7 +273,7 @@ public class Controller extends BaseController {
 			dateStr = creantime;
 		}
 		JSONObject json = new JSONObject();
-		json.put("state", "success");
+		json.put("msg", "1");
 		renderJson(json.toJSONString());
 	}
 	

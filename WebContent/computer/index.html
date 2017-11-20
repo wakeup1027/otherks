@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>走势图</title>
+<title>快三开奖走势图</title>
 <script src="${BASE_PATH}js/jquery.js"></script>
 <style>
 body{font-size:13px;}
@@ -14,7 +14,7 @@ button{margin-left:15px; cursor:pointer;}
 </head>
 
 <body>
-<div id="zoushiBox" style="margin:0px auto; margin-top:15px; display:block;">
+<div id="zoushiBox" style="margin:0px auto; margin-top:15px; display:block; width: 1120px;">
 <table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-right:1px solid #f1f1f1;">
   <tr>
     <td style="width:100px;" rowspan="2" scope="col">期号</td>
@@ -23,6 +23,8 @@ button{margin-left:15px; cursor:pointer;}
     <td colspan="16" scope="col">和值</td>
     <td colspan="2" scope="col">大小</td>
     <td colspan="2" scope="col">单双</td>
+    <td colspan="2" scope="col">质合</td>
+    <td colspan="3" scope="col">路数</td>
   </tr>
   <tr>
     <td style="width:35px">03</td>
@@ -45,6 +47,11 @@ button{margin-left:15px; cursor:pointer;}
     <td style="width:35px">小</td>
     <td style="width:35px">单</td>
     <td style="width:35px">双</td>
+    <td style="width:35px">质</td>
+    <td style="width:35px">合</td>
+    <td style="width:35px">0路</td>
+    <td style="width:35px">1路</td>
+    <td style="width:35px">2路</td>
   </tr>
 </table>
 <table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;"></table>
@@ -68,7 +75,7 @@ for(var j=0;j<date.length;j++){
 	var firstNum = chdate.substring(0,1);
 	var secondNum = chdate.substring(1,2);
 	var threeNum = chdate.substring(2,3);
-	$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
+	$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
 	//写开奖号码公布
     var tdArr = $("#zoushiPuture").find("tr").eq(j).find("td");
@@ -119,6 +126,27 @@ for(var j=0;j<date.length;j++){
 		tdArr.eq(22).text("单");
 		tdArr.eq(22).css({"background":"#FF9C00","color":"#fff"});
 	}
+	
+	//写质合
+	if(allRes==3||allRes==5||allRes==7||allRes==11||allRes==13||allRes==17){
+		tdArr.eq(24).text("质");
+		tdArr.eq(24).css({"background":"#F64C56","color":"#fff"});
+	}else{
+		tdArr.eq(25).text("合");
+		tdArr.eq(25).css({"background":"#F64C56","color":"#fff"});
+	}
+	
+	//写路数
+	if(allRes%3==0){
+		tdArr.eq(26).text("0");
+		tdArr.eq(26).css({"background":"#9C58CC","color":"#fff"});
+	}else if(allRes%3==1){
+		tdArr.eq(27).text("1");
+		tdArr.eq(27).css({"background":"#9C58CC","color":"#fff"});
+	}else if(allRes%3==2){
+		tdArr.eq(28).text("2");
+		tdArr.eq(28).css({"background":"#9C58CC","color":"#fff"});
+	}
 }
 
 $(function(){
@@ -153,22 +181,6 @@ function formd(qiNum, Num){
 	jsond.Num = Num;
 	return jsond;
 }
-
-/*function writNum(num){
-	if(num==1||num=="1"){
-		return 4;
-	}else if(num==2||num=="2"){
-		return 5;
-	}else if(num==3||num=="3"){
-		return 6;
-	}else if(num==4||num=="4"){
-		return 7;
-	}else if(num==5||num=="5"){
-		return 8;
-	}else if(num==6||num=="6"){
-		return 9;
-	}
-}*/
 
 function bigsamll(allRes){
 	if(allRes<=10){

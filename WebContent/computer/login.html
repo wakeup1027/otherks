@@ -2,25 +2,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>快三系统登录界面</title>
 </head>
-<body>
-<div style="width:250px; height:150px; margin:0px auto;">
-<form action="${BASE_PATH}home/login.html" method="post">
-	<table>
-		<tr>
-			<td>用户名：</td>
-			<td><input type="text" name="userName"/></td>
-		</tr>
-		<tr>
-			<td>密　码：</td>
-			<td><input type="password" name="password"/></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="登　陆"/></td>
-		</tr>
-	</table>
-</form>
+<body style="padding:0px; margin:0px; background: url(${BASE_PATH}images/login_bg_0.jpg) #f8f6e9;">
+<div style="width:500px; margin:10% auto; border-radius:10px; overflow:hidden;">
+	<div>
+		<div style="width:200px; float:left; padding:20px; font-size:21px; line-height: 40px; color:#777; font-weight:700; letter-spacing:2px; text-align: center; height:22px; background:rgba(255,255,255,0.7); border-radius:0px 10px 0px 0px;">快三系统登录界面</div>
+		<div style="width:256px; height:62px; float:left;"></div>
+		<div style="clear:both;"></div>
+	</div>
+	<div style="padding:30px 50px 20px 50px; background:rgba(255,255,255,0.7); border-radius: 0px 10px 0px 0px;">
+		<form action="${BASE_PATH}home/checlogin.html" method="post">
+			<table cellpadding="10">
+				<tr>
+					<td></td>
+					<td><input type="text" name="userName" placeholder="请输入登录用户名" style="font-size:15px; color:#666; width:300px; padding:10px; border:none; outline:none; border-radius:5px;"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="password" name="password" placeholder="请输入登录密码" style="font-size:15px; color:#666; width:300px; padding:10px; border:none; outline:none; border-radius:5px;"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="登　陆" style="padding:10px 50px; cursor:pointer; border:0px; background:#1B54F7; color:#fff; border-radius:5px;"/></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="color:#ff0000; font-size:13px;">${mes}</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </div>
 </body>
 </html>

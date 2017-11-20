@@ -18,7 +18,7 @@ import demo.UserInterceptor;
 @Clear(UserInterceptor.class)
 public class Controller extends BaseController{
 	
-	public void index(){
+	/*public void index(){
 		//获取倒计时
 		TaskTimerBean taskt = TaskTimerBean.dao.findById(1);
 		if(taskt.getInt("status")==1){ //如果开奖器是开启的则获取数据库中的倒计时时间
@@ -45,13 +45,13 @@ public class Controller extends BaseController{
 			setAttr("Llog",Llog);
 		}
 		//获取每日开奖的期数
-		/*OpenNum ON = OpenNum.dao.findById(1);
+		OpenNum ON = OpenNum.dao.findById(1);
 		ON.put("nextTime",getYearMd());//+fstring.formNum(ON.getInt("openNum"),ON.getInt("nowNum"))
-		setAttr("ON",ON);*/
+		setAttr("ON",ON);
 		renderAuto("/home.html");
-	}
+	}*/
 	
-	public void resHtml(){
+	public void index(){
 		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 120");
 		if(Llog.size()==0){
 			Llog = new ArrayList<LotteryLog>();
@@ -113,10 +113,17 @@ public class Controller extends BaseController{
 	
 	//=========用户登陆===============
 	public void login(){
+		setAttr("mes", "");
+		render("/computer/login.html");
+	}
+	
+	public void checlogin(){
 		if(new FormString().userLogin(getPara("userName"), getPara("password"))){
 			setSessionAttr("loginUser", getPara("userName"));
+			setAttr("mes", "");
 			redirect("/admin.html");
 		}else{
+			setAttr("mes", "用户名或者密码错误，请联系管理员获取授权！");
 			render("/computer/login.html");
 		}
 	}
