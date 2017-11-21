@@ -162,10 +162,10 @@ public class FormString {
 	public String formNum(int nowday){
 		String strnowday = String.valueOf(nowday);
 		String zero = "";
-		if(5-strnowday.length()<=0){
+		if(7-strnowday.length()<=0){
 			zero = "0";
 		}else{
-			for(int i=0; i<(5-strnowday.length()); i++){
+			for(int i=0; i<(7-strnowday.length()); i++){
 				zero+="0";
 			}
 		}

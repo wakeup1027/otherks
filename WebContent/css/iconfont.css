@@ -1,0 +1,46 @@
+
+@font-face {font-family: "iconfont";
+  src: url('../font/iconfont.eot?t=1511270255631'); /* IE9*/
+  src: url('../font/iconfont.eot?t=1511270255631#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/iconfont.ttf?t=1511270255631') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../font/iconfont.svg?t=1511270255631#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:21px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-all:before { content: "\e696"; }
+
+.icon-back:before { content: "\e698"; }
+
+.icon-search:before { content: "\e6ac"; }
+
+.icon-smile:before { content: "\e6af"; }
+
+.icon-viewgallery:before { content: "\e6b4"; }
+
+.icon-account:before { content: "\e6b8"; }
+
+.icon-shouye:before { content: "\e62d"; }
+
+.icon-toys:before { content: "\e6e1"; }
+
+.icon-yanjing:before { content: "\e6ce"; }
+
+.icon-iconfontplay2:before { content: "\e719"; }
+
+.icon-ship:before { content: "\e74f"; }
+
+.icon-hot:before { content: "\e756"; }
+
+.icon-favorites:before { content: "\e7ce"; }
+
+.icon-video:before { content: "\e820"; }
+
+.icon-earth:before { content: "\e828"; }
+

@@ -265,7 +265,7 @@ public class Controller extends BaseController {
 			String creantime = DU.getTime(dateStr, timeNum);
 			LotteryLog lott = new LotteryLog();
 			lott.set("creantime", creantime);
-			lott.set("qiNum",creantime.substring(0, 4)+new FormString().formNum(openn.getInt("nowNum")));
+			lott.set("qiNum",creantime.substring(2, 4)+new FormString().formNum(openn.getInt("nowNum")));
 			lott.set("Num", fs.getThreeNum());
 			lott.save();
 			openn.set("nowNum", openn.getInt("nowNum")+1);

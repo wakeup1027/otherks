@@ -2,10 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <title>快三开奖走势图</title>
+<link rel="stylesheet" href="${BASE_PATH}css/iconfont.css"/>
 <script src="${BASE_PATH}js/jquery.js"></script>
 <style>
-body{font-size:13px;}
+body{font-size:13px; margin: 0px; padding: 0px;}
 .titleTable td,.titleTable th{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1;}
 #zoushiPuture td{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1; height:30px;}
 
@@ -14,7 +16,16 @@ button{margin-left:15px; cursor:pointer;}
 </head>
 
 <body>
-<div id="zoushiBox" style="margin:0px auto; margin-top:15px; display:block; width: 1120px;">
+<div style="width: 100%; background: #3E94F1; color: #fff; position: fixed; top: 0px; line-height: 50px;">
+	<div style="width: 210px;  margin: 0px auto;  text-align: center;">
+		<div style="float:left;font-size: 15px;">距离下次开奖：</div>
+		<div style="float: left; margin-left: 10px; width: 35px; height: 35px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 35px; font-size: 18px; margin-top: 8px;">09</div>
+		<div style="float:left; margin-left: 5px; font-weight:700;">:</div>
+		<div style="float: left; margin-left: 5px; width: 35px; height: 35px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 35px; font-size: 18px; margin-top: 8px;">05</div>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+<div id="zoushiBox" style="margin:0px auto; display:block; width: 1120px;padding: 50px 0px;">
 <table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-right:1px solid #f1f1f1;">
   <tr>
     <td style="width:100px;" rowspan="2" scope="col">期号</td>
@@ -59,6 +70,53 @@ button{margin-left:15px; cursor:pointer;}
 <div id="canvasBox2"></div>
 <div id="canvasBox3"></div>
 </div>
+<style>
+.ulbox li{float:left; text-align:center; width:21.25%;}
+.ulbox li a{text-decoration:none; outline:none;}
+</style>
+<script>
+$(function(){
+	$(".ulbox li").click(function(){
+		if($(this).hasClass("searchBtn")){
+			
+		}else{
+			//$(this).siblings().find("a").css("color":"#666");
+		}
+	});	
+});
+</script>
+<div style="width: 100%;  background: #fff; position: fixed; z-index: 1111; bottom: 0px;">
+	<ul class="ulbox" style="margin: 0px; padding: 5px 0px; list-style-type: none; line-height: 20px; box-shadow: 0px 10px 10px 10px #999;">
+		<li>
+		<a href="${BASE_PATH}home/index.html?num=30" style="display:block; color:${numStr==30?'#3E94F1':'#666'};">
+			<div><i class="icon iconfont icon-yanjing"></i></div>
+			<div style="font-size:13px;">显示30条</div>
+		</a>
+		</li>
+		<li>
+		<a href="${BASE_PATH}home/index.html?num=50" style="display:block; color:${numStr==50?'#3E94F1':'#666'};">
+			<div><i class="icon iconfont icon-yanjing"></i></div>
+			<div style="font-size:13px;">显示50条</div>
+		</a>
+		</li>
+		<li class="searchBtn" style="width:15%">
+			<div style="line-height: 40px;"><i class="icon iconfont icon-search" style="font-size: 25px;"></i></div>
+		</li>
+		<li>
+		<a href="${BASE_PATH}home/index.html?num=100" style="display:block; color:${numStr==100?'#3E94F1':'#666'};">
+			<div><i class="icon iconfont icon-yanjing"></i></div>
+			<div style="font-size:13px;">显示100条</div>
+		</a>
+		</li>
+		<li>
+		<a href="${BASE_PATH}home/index.html?num=200" style="display:block; color:${numStr==200?'#3E94F1':'#666'};">
+			<div><i class="icon iconfont icon-yanjing"></i></div>
+			<div style="font-size:13px;">显示200条</div>
+		</a>
+		</li>
+		<div style="clear:both;"></div>
+	</ul>
+</div>
 <script type="text/javascript">
 var date = []; //随机开奖的结果集
 var pointDate = []; //画图的结果集
@@ -78,7 +136,11 @@ for(var j=0;j<date.length;j++){
 	$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
 	//写开奖号码公布
-    var tdArr = $("#zoushiPuture").find("tr").eq(j).find("td");
+	var thArr = $("#zoushiPuture").find("tr").eq(j);
+	if(j%2==0){ 
+		thArr.css("background","#f9f9f9");
+	}
+    var tdArr = thArr.find("td");
     /*tdArr.eq(writNum(firstNum)).text(firstNum);
     tdArr.eq(writNum(secondNum)).text(secondNum);
 	tdArr.eq(writNum(threeNum)).text(threeNum);*/

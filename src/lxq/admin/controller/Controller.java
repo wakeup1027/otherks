@@ -7,8 +7,6 @@ import lxq.user.util.FormString;
 
 import com.base.BaseController;
 import com.bean.LotteryLog;
-import com.bean.TaskTimerBean;
-import com.bean.TimeNumOver;
 import com.config.ControllerBind;
 import com.jfinal.aop.Clear;
 
@@ -52,23 +50,16 @@ public class Controller extends BaseController{
 	}*/
 	
 	public void index(){
-		List<LotteryLog> Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 120");
-		if(Llog.size()==0){
-			Llog = new ArrayList<LotteryLog>();
-			LotteryLog LlogCh = new LotteryLog();
-			setAttr("Llog",LlogCh);
-			setAttr("dateList",Llog);
+		List<LotteryLog> Llog = new ArrayList<LotteryLog>();
+		if(getPara("num")==null){
+			Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 30");
+			setAttr("numStr", 30);
 		}else{
-			LotteryLog LlogCh = LotteryLog.dao.findFirst("SELECT * FROM lottery_log ORDER BY creantime DESC");
-			FormString fstring = new FormString();
-			LlogCh.put("firstNum", fstring.firstNum(LlogCh.getInt("Num")+""));
-			LlogCh.put("secondNum", fstring.secondNum(LlogCh.getInt("Num")+""));
-			LlogCh.put("threeNum", fstring.threeNum(LlogCh.getInt("Num")+""));
-			setAttr("Llog",LlogCh);
-			setAttr("dateList",Llog);
+			Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT "+getParaToInt("num"));
+			setAttr("numStr", getParaToInt("num"));
 		}
-		
-		renderAuto("/index.html");
+		setAttr("dateList",Llog);
+		render("/computer/index.html");
 	}
 	
 	public void overres(){
