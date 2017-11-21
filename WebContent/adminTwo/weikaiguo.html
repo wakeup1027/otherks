@@ -62,7 +62,6 @@ function submitForm(){
 			if(res.msg==1){
        			$('#dlg').dialog('close');
            		$('#dg').datagrid('reload');
-           		$.messager.alert('操作提示', "数据保存成功！", 'info');
        		}else{
        			$.messager.alert('操作提示', "数据保存不成功！", 'warning');
        		}
