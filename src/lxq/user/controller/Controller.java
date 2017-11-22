@@ -17,6 +17,7 @@ import com.bean.LotteryLog;
 import com.bean.OpenNum;
 import com.bean.TaskTimerBean;
 import com.bean.TimeLong;
+import com.bean.TimeNumOver;
 import com.config.ControllerBind;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
@@ -170,6 +171,9 @@ public class Controller extends BaseController {
 		JSONObject json = new JSONObject();
 		json.put("state", Tiemer.StopTiemer());
 		Tiemer.StopTiemer(); //把倒计时也重置一下
+		TimeNumOver tlong = TimeNumOver.dao.findById(1);
+		tlong.set("number", 0);
+		tlong.update();
 		renderJson(json.toJSONString());
 	}
 	

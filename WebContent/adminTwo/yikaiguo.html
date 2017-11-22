@@ -42,6 +42,7 @@ $(function(){
 var numUrl = "";
 
 function newMajor(){
+	$("#importfm").form('clear');
 	numUrl = "${BASE_PATH}admin/iptAutoNum";
 	$('#dlg').dialog('open').dialog('setTitle','一键添加数据');
 }
@@ -142,6 +143,15 @@ Date.prototype.format = function (format) {
 		 } 
 		 return format;  
 }
+
+$.extend($.fn.validatebox.defaults.rules, {
+	countNum: {
+		validator: function(value,param){
+			return value<=200;
+		},
+		message: '为了系统运行正常，请保证添加数据不超过200条'
+    }
+});
 </script>
 <div>
 	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="newMajor()">一键添加数据</a>
@@ -158,7 +168,7 @@ Date.prototype.format = function (format) {
 		<tr>
 			<th style="text-align:right;">数据条数：</th>
 			<td>
-				<input name="forNum" class="easyui-textbox" data-options="required:true,prompt:'请输入增加多少条数据'" placeholder="请输入增加多少条数据" style="border:1px solid #e1e1e1; padding:10px; height:30px; width:243px; border-radius:5px; outline:none;"/>
+				<input name="forNum" class="easyui-textbox" data-options="required:true,prompt:'请输入增加多少条数据',validType:'countNum'" style="border:1px solid #e1e1e1; padding:10px; height:30px; width:243px; border-radius:5px; outline:none;"/>
 			</td>
 		</tr>
 		<tr>

@@ -7,6 +7,8 @@ import lxq.user.util.FormString;
 
 import com.base.BaseController;
 import com.bean.LotteryLog;
+import com.bean.TaskTimerBean;
+import com.bean.TimeNumOver;
 import com.config.ControllerBind;
 import com.jfinal.aop.Clear;
 
@@ -50,6 +52,16 @@ public class Controller extends BaseController{
 	}*/
 	
 	public void index(){
+		//获取倒计时
+		TaskTimerBean taskt = TaskTimerBean.dao.findById(1);
+		if(taskt.getInt("status")==1){ //如果开奖器是开启的则获取数据库中的倒计时时间
+			TimeNumOver tlong = TimeNumOver.dao.findById(1);
+			int timeNum = tlong.getInt("number");
+			setAttr("tlong",timeNum*1000);
+		}else{
+			setAttr("tlong",-1);
+		}
+	
 		List<LotteryLog> Llog = new ArrayList<LotteryLog>();
 		if(getPara("num")==null){
 			Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 30");

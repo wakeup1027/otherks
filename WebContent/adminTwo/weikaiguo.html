@@ -49,11 +49,13 @@ function newMajor(){
 }
 
 function submitForm(){
-		$('#importfm').ajaxSubmit({  
+		$('#importfm').form('submit',{  
 			url: numUrl,
-			dataType: 'text',
-			beforeSend:function(){$("#loadBox").show();},
-			complete:function(){$("#loadBox").hide();},
+			onSubmit: function () {
+	            var isOk = false;
+	            isOk = $(this).form('enableValidation').form('validate');
+	            return isOk;
+        	},
 			success: resutlMsg,
 			error: errorMsg
 		}); 
@@ -122,6 +124,40 @@ Date.prototype.format = function (format) {
 		 } 
 		 return format;  
 }
+
+$.extend($.fn.validatebox.defaults.rules, {
+	checkNum: {
+		validator: function(value,param){
+			if(value.length>1){
+				return false;
+			}else{
+				return true;
+			}
+		},
+		message: '只能输入1位数'
+    },
+    isNum:{
+    	validator: function(value,param){
+			if(isNaN(value)){
+				return false;
+			}else{
+				return true;
+			}
+		},
+		message: '只能输入数字'
+    },
+    bigNum:{
+    	validator: function(value,param){
+			if(0<value&&value<7){
+				return true;
+			}else{
+				return false;
+			}
+		},
+		message: '不能输入大于6或等于0的数'
+    }
+    
+});
 </script>
 <div>
 	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="newMajor()">录入开奖号码</a>
@@ -136,9 +172,9 @@ Date.prototype.format = function (format) {
 	<table cellspacing="5" style="font-size:13px;">
 		<tr>
 			<td><label>录入号码：</label></td>
-			<td><input id="dy_firstNum" name="firstNum" class="easyui-textbox" data-options='' style="width:50px;"/></td>
-			<td><input id="dy_secondNum" name="secondNum" class="easyui-textbox" data-options='' style="width:50px;"/></td>
-			<td><input id="dy_threeNum" name="threeNum" class="easyui-textbox" data-options='' style="width:50px;"/></td>
+			<td><input id="dy_firstNum" name="firstNum" class="easyui-textbox" data-options="validType:['checkNum','isNum','bigNum']" style="width:50px;"/></td>
+			<td><input id="dy_secondNum" name="secondNum" class="easyui-textbox" data-options="validType:['checkNum','isNum','bigNum']" style="width:50px;"/></td>
+			<td><input id="dy_threeNum" name="threeNum" class="easyui-textbox" data-options="validType:['checkNum','isNum','bigNum']" style="width:50px;"/></td>
 		</tr>
 	</table>
 	</form>

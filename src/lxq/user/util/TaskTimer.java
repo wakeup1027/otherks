@@ -13,6 +13,11 @@ import com.bean.TaskTimerBean;
 import com.bean.TimeLong;
 import com.bean.TimeNumOver;
 
+/**
+ * 暂时不要这个定时器
+ * @author Administrator
+ *
+ */
 public class TaskTimer extends BaseController{
 	private FormString fs = new FormString();
 	final Timer timer = new Timer();
@@ -90,7 +95,7 @@ public class TaskTimer extends BaseController{
 					
 				}else{ //使用奖池里面的号码
 					llog.put("qiNum",getYear().substring(2, 4)+fs.formNum(on.getInt("nowNum")));
-					llog.put("Num",nowNum.getInt("Num"));
+					llog.put("Num",fs.formNumTwo(nowNum.getInt("Num")));
 					llog.put("creantime",getNow());
 					List<LotteryLog> ltt = LotteryLog.dao.find("SELECT * FROM lottery_log WHERE qiNum = '"+llog.getStr("qiNum")+"'");
 					if(ltt.size()>0){

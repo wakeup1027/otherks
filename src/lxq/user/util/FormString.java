@@ -143,6 +143,15 @@ public class FormString {
 		return Paixu(arr1);
 	}
 	
+	public String formNumTwo(int num){
+		int[] arr1 = new int[3];
+		String numStr = num+"";
+		arr1[0] = Integer.parseInt(numStr.substring(0,1));
+		arr1[1] = Integer.parseInt(numStr.substring(1,2));
+		arr1[2] = Integer.parseInt(numStr.substring(2,3));
+		return Paixu(arr1);
+	}
+	
 	public String Paixu(int[] num){
 		int temp = 0;
         int size = num.length;
@@ -192,7 +201,7 @@ public class FormString {
 	}
 	
 	public static void main(String[] args) { 
-		  System.out.println(new FormString().formNum(10000));
+		  System.out.println(new FormString().formNumTwo(452));
 	}
 	
 }
