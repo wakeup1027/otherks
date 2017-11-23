@@ -64,10 +64,12 @@ public class Controller extends BaseController{
 	
 		List<LotteryLog> Llog = new ArrayList<LotteryLog>();
 		if(getPara("num")==null){
-			Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 30");
+			//Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 30");
+			Llog = LotteryLog.dao.findCache("LotteryLog", "logdate30", "SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT 30");
 			setAttr("numStr", 30);
 		}else{
-			Llog = LotteryLog.dao.find("SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT "+getParaToInt("num"));
+			Llog = LotteryLog.dao.findCache("LotteryLog", "logdate"+getParaToInt("num"), "SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT "+getParaToInt("num"));
+			//List<LotteryLog> Llog1 = LotteryLog.dao.findByCache("LotteryLog", "logdate"+getParaToInt("num"), "SELECT * FROM lottery_log ORDER BY creantime DESC LIMIT "+getParaToInt("num"))
 			setAttr("numStr", getParaToInt("num"));
 		}
 		setAttr("dateList",Llog);

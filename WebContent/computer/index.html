@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="${BASE_PATH}css/iconfont.css"/>
 <script src="${BASE_PATH}js/jquery.js"></script>
 <style>
-html,body{height:100%; font-size:13px; margin: 0px; padding: 0px; overflow:hidden;}
+html,body{height:100%; font-size:13px; margin: 0px; padding: 0px;}
 .titleTable td,.titleTable th{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1;}
 #zoushiPuture td{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1; height:30px;}
 button{margin-left:15px; cursor:pointer;}
@@ -16,11 +16,12 @@ button{margin-left:15px; cursor:pointer;}
 
 <body>
 <div style="width: 100%; background: #3E94F1; color: #fff; position: fixed; top: 0px; line-height: 50px;">
-	<div style="width: 210px;  margin: 0px auto;  text-align: center;">
+	<div style="width: 280px;  margin: 0px auto;  text-align: center;">
 		<div style="float:left;font-size: 15px;">距离下次开奖：</div>
 		<div id="mmBox" style="float: left; margin-left: 10px; width: 35px; height: 35px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 35px; font-size: 18px; margin-top: 8px;">09</div>
 		<div style="float:left; margin-left: 5px; font-weight:700;">:</div>
 		<div id="ssBox" style="float: left; margin-left: 5px; width: 35px; height: 35px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 35px; font-size: 18px; margin-top: 8px;">05</div>
+		<div id="tishiBox" style="float: left; margin-left: 15px; font-size: 15px; margin-top: 2px;">开奖结束</div>
 		<div style="clear:both;"></div>
 	</div>
 </div>
@@ -131,9 +132,9 @@ function sendemail(){
 	if(countdown<0){
 		$("#mmBox").text("--");
 		$("#ssBox").text("--");
-		$("#grueBox").css("display","block");
-		$("html,body").css("overflow","hidden");
-    	$("#openNumTshi").text("开奖结束");
+		//$("#grueBox").css("display","block");
+		//$("html,body").css("overflow","hidden");
+    	$("#tishiBox").text("开奖结束");
 	}else{
 		settime();
 	}
@@ -141,9 +142,9 @@ function sendemail(){
 
 function settime() {
     if (countdown <= 0) { //倒计时完之后刷新整个页面
-    	$("#grueBox").css("display","block");
-    	$("html,body").css("overflow","hidden");
-    	$("#openNumTshi").text("开奖中...");
+    	//$("#grueBox").css("display","block");
+    	//$("html,body").css("overflow","hidden");
+    	$("#tishiBox").text("开奖中...");
     	$("#mmBox").text("--");
 		$("#ssBox").text("--");
     	var timer2=window.setTimeout(function(){
@@ -152,7 +153,8 @@ function settime() {
 		},2000);
         return;
     } else {
-    	$("html,body").css("overflow","unset");
+    	//$("html,body").css("overflow","unset");
+    	$("#tishiBox").text("等待开奖");
     	var mmss = fromTime(countdown);
     	countdown = parseInt(countdown)-1000;
     	var Time = mmss.split(",");

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import lxq.user.util.cache.CacheUntil;
+
 import com.base.BaseController;
 import com.bean.IsAutoStart;
 import com.bean.Lottery;
@@ -31,10 +33,11 @@ public class Tiemer extends BaseController{
 				timer.cancel();
 			}else{
 				System.out.println("开奖开始");
-				  Lottery nowNum = Lottery.dao.findFirst("SELECT * FROM lottery ORDER BY creantime ASC");
-				  OpenNum on = OpenNum.dao.findById(1);//查找一天开奖的期数
-				  LotteryLog llog = new LotteryLog();
-				  if(null==nowNum){//等于空的时候就说明奖池里面是没有号码了
+				CacheUntil.get("LotteryLog").clear(); //清理缓存
+				Lottery nowNum = Lottery.dao.findFirst("SELECT * FROM lottery ORDER BY creantime ASC");
+				OpenNum on = OpenNum.dao.findById(1);//查找一天开奖的期数
+				LotteryLog llog = new LotteryLog();
+				if(null==nowNum){//等于空的时候就说明奖池里面是没有号码了
 					  IsAutoStart ias = IsAutoStart.dao.findById(1);
 					  if(ias.getInt("status")==1){ //判断是否设置了自动开奖
 						  llog.put("qiNum",getYear().substring(2, 4)+fs.formNum(on.getInt("nowNum")));
@@ -68,7 +71,7 @@ public class Tiemer extends BaseController{
 						  tlong.update();
 						  timer.cancel();
 					 }
-				  }else{
+				}else{
 					  llog.put("qiNum",getYear().substring(2, 4)+fs.formNum(on.getInt("nowNum")));
 					  llog.put("Num",fs.formNumTwo(nowNum.getInt("Num")));
 					  llog.put("creantime",getNow());
@@ -89,7 +92,7 @@ public class Tiemer extends BaseController{
 							tlong.set("number", 600);
 							tlong.update();
 					  }
-				  }
+				}
 			}
 
 	      }
@@ -100,7 +103,7 @@ public class Tiemer extends BaseController{
 	public static boolean StopTiemer(){
 		TaskTimerBean taskt = TaskTimerBean.dao.findById(1);
 		taskt.set("status", 0);
-		taskt.set("person", 2);
+		taskt.set("person", 1);
 		taskt.update();
 		return true;
 	}

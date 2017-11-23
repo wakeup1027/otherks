@@ -48,6 +48,7 @@ function newMajor(){
 }
 
 function submitForm(){
+	$("#load").css("display","block");
 		$('#importfm').form('submit',{  
 			url: numUrl,
 			onSubmit: function () {
@@ -63,6 +64,7 @@ function submitForm(){
 			if(res.msg==1){
        			$('#dlg').dialog('close');
            		$('#dg').datagrid('reload');
+           		$("#load").css("display","none");
            		$.messager.alert('操作提示', "数据保存成功！", 'info');
        		}else{
        			$.messager.alert('操作提示', "数据保存不成功！", 'warning');
@@ -161,7 +163,6 @@ $.extend($.fn.validatebox.defaults.rules, {
 <div style="width:100%; height:400px;">
 	<div id="dg" style="width:100%; height:100%;"></div>
 </div>
-
 <div id="dlg" class="easyui-dialog" style="width:470px; height:350px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
 	<form id="importfm" class="easyui-form" method="post" novalidate >
 	<table cellspacing="5" style="font-size:13px;">
@@ -190,5 +191,6 @@ $.extend($.fn.validatebox.defaults.rules, {
 	<a href="javascript:void(0)" class="easyui-linkbutton" id="saveBean" iconCls="icon-ok" onclick="submitForm()" style="displaly:block;width: 90px">保存</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton" id="saveCancel" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
 </div>
+<div id="load" style="position: absolute;top: 25%;left: 45%;z-index: 9999;width:32px; height:32px; background:url(${BASE_PATH}images/5-121204193R5-50.gif); margin:0px auto; display:none;"></div>
 </body>
 </html>
