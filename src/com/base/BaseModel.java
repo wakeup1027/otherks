@@ -2,6 +2,9 @@ package com.base;
 
 import java.util.List;
 
+import lxq.user.util.cache.Cache;
+import lxq.user.util.cache.CacheUntil;
+
 import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Table;
@@ -26,6 +29,24 @@ public class BaseModel<M extends Model<M>> extends Model<M>{
 	public long count(String sql){
 		List<M> datecount = find(sql);
 		return datecount.size();
+	}
+	
+	/**
+	 * findCache是重构版findByCache，使用自己的Cache
+	 * @param cacheName
+	 * @param key
+	 * @param sql
+	 * @param paras
+	 * @return
+	 */
+	public List<M> findCache(String cacheName, String key, String sql) {
+		Cache cache = CacheUntil.get(cacheName);
+		List<M> result = cache.get(key);
+		if (result == null) {
+			result = find(sql);
+			cache.add(key, result);
+		}
+		return result;
 	}
 	
 	/**
