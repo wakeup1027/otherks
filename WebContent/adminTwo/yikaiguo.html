@@ -51,12 +51,14 @@ function newMajor(){
 }
 
 function submitForm(){
-	$("#load").css("display","block");
 		$('#importfm').form('submit',{  
 			url: numUrl,
 			onSubmit: function () {
 	            var isOk = false;
 	            isOk = $(this).form('enableValidation').form('validate');
+	            if(isOk){
+	            	$("#load").css("display","block");
+	            }
 	            return isOk;
         	},
 			success: resutlMsg,
