@@ -5,6 +5,7 @@ import java.util.List;
 
 import lxq.user.util.FormString;
 
+import com.alibaba.fastjson.JSONObject;
 import com.base.BaseController;
 import com.bean.LotteryLog;
 import com.bean.TaskTimerBean;
@@ -133,6 +134,20 @@ public class Controller extends BaseController{
 		}
 	}
 	
+	//用户查找期数
+	public void findqiNum(){
+		JSONObject json = new JSONObject();
+		LotteryLog lolog = LotteryLog.dao.findFirst("SELECT * FROM lottery_log WHERE qiNum = '"+getPara("qiNum")+"'");
+		if(null==lolog){
+			json.put("resdate", lolog);
+			json.put("msg", 0);
+		}else{
+			json.put("resdate", lolog);
+			json.put("msg", 1);
+		}
+		renderJson(json);
+	}
+	
 	//同步后台时间
 	/*public void getHeaTime(){
 		JSONObject json = new JSONObject();
@@ -149,6 +164,7 @@ public class Controller extends BaseController{
 	
 	public void loginout(){
 		removeSessionAttr("loginUser");
+		setAttr("mes", "");
 		render("/computer/login.html");
 	}
 	

@@ -155,6 +155,15 @@ public class Controller extends BaseController {
 	    renderJson(map);
 	}
 	
+	public void searchDate(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<LotteryLog> orders = LotteryLog.dao.findByPage("WHERE qiNum LIKE '%"+getPara("qiNum")+"%'",getParaToInt("page"), getParaToInt("rows"),"creantime");
+		Long total = LotteryLog.dao.count("SELECT * FROM lottery_log WHERE qiNum LIKE '%"+getPara("qiNum")+"%' ORDER BY creantime DESC");
+		map.put("rows", orders);
+	    map.put("total", total); 
+	    renderJson(map);
+	}
+	
 	//========Æô¶¯¿ª½±Æ÷========
 	public void start(){
 		//TimeLong tlong = TimeLong.dao.findById(4);

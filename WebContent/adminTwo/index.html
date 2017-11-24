@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="${BASE_PATH}css/easyui/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="${BASE_PATH}js/easyui/js/themes/gray/easyui.css" />
     <link rel="stylesheet" type="text/css" href="${BASE_PATH}js/easyui/js/themes/icon.css" />
+    <link rel="stylesheet" href="${BASE_PATH}css/iconfont.css"/>
     <script type="text/javascript" src="${BASE_PATH}js/easyui/js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="${BASE_PATH}js/easyui/js/jQuery.easyui.js"></script>
 	<script type="text/javascript" src='${BASE_PATH}js/easyui/js/outlook2.js'></script>
@@ -59,17 +60,21 @@
 	
 	<!--顶部-->
     <div region="north" split="true" border="false" style="overflow: hidden; height: 100px; background-color:#000000;line-height: 20px;color: #fff; font-family: Verdana,微软雅黑,黑体;">
-        <div style="width:250px; float:right;" class="head">
-			<!-- <a class="comeback">欢迎admin回来</a>
+    	<div style="float:left; margin-top: 35px; margin-left: 30px;">
+    		<i class="iconfont icon-21466" style="font-size:50px; float:left"></i>
+			<div style="float:left; font-size:25px; padding-left:10px;">快三后台管理系统</div>
+			<div style="clear:both;"></div>
+    	</div>
+        <div style="width:100px; float:right;" class="head">
+			<!-- <a class="comeback">欢迎使用快三系统</a>
 			<a href="#" id="editpass" class="comeback">修改密码</a> --> 
-			<a href="${BASE_PATH}home/loginout.html" id="loginOut" class="comeback">安全退出</a>
+			<a href="${BASE_PATH}home/loginout.html" style="font-size:18px; margin-top: 35px;">退 出</a>
 		</div>
-        <span style="padding-left:10px; font-size: 16px;"><img src="${BASE_PATH}images/easyui/images/blocks.gif" width="20" height="20" align="absmiddle" /></span>
     </div>
 	
 	<!--底部-->
     <div region="south" split="true" style="height: 30px; background:#D2E0F2; ">
-        <div class="footer">By 行走的火焰 Email:lxq@59ibox.cn</div>
+        <div class="footer">By 行走的火焰 Email:xiaoli@59ibox.cn</div>
     </div>
 	
 	<!--菜单项-->

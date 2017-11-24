@@ -10,10 +10,13 @@
 </head>
 <style>
 body{background:#fff;}
+.datagrid-header-row,.datagrid-row {height:32px;}
 </style>
 <body>
 <script>
 $(function(){
+	$("#grigtBox").css("height",($(window).height()-53)+"px");
+	
 	$('#dg').datagrid({
 	    height: '100%',
 	    fit:true,
@@ -32,9 +35,9 @@ $(function(){
 		rownumbers:true,
 		columns: [[
 				    {field: 'ck', checkbox:true},
-				    {field: 'qiNum', title:'期号', width:250},
-				    {field: 'Num', title:'开奖号码', width:150},
-				    {field: 'creantime', title:'开奖时间', width:150,formatter:fotmateDate}
+				    {field: 'qiNum', title:'期号', width:'20%'},
+				    {field: 'Num', title:'开奖号码', width:'20%'},
+				    {field: 'creantime', title:'开奖时间', width:'57%',formatter:fotmateDate}
 	    ]]
 	});
 });
@@ -113,6 +116,34 @@ function alldelet(){
 	});
 }
 
+function queryfind(){
+	var key = $("#searchKey").textbox("getValue").trim();
+	$('#dg').datagrid({
+	    height: '100%',
+	    fit:true,
+	    url: '${BASE_PATH}admin/searchDate.html',
+	    queryParams:{"qiNum":key},
+	    method: 'POST',
+	    striped: true,
+	    nowrap: true,
+	    pageSize: 10,
+	    pageNumber:1, 
+	    pageList: [10, 20, 50, 100, 150, 200],
+		pagination : true,
+	    showFooter: true, 
+		loadMsg : '数据加载中请稍后……',
+	    toolbar:"#tb",
+	    singleSelect: false,
+		rownumbers:true,
+		columns: [[
+				    {field: 'ck', checkbox:true},
+				    {field: 'qiNum', title:'期号', width:'20%'},
+				    {field: 'Num', title:'开奖号码', width:'20%'},
+				    {field: 'creantime', title:'开奖时间', width:'57%',formatter:fotmateDate}
+	    ]]
+	});
+}
+
 //格式化的方法
 function fotmateDate(value){
 	var dateStr = "";
@@ -156,11 +187,18 @@ $.extend($.fn.validatebox.defaults.rules, {
 });
 </script>
 <div>
-	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="newMajor()">一键添加数据</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cut',plain:true" onclick="delet()">删除</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cut',plain:true" onclick="alldelet()">清空数据</a>
+	<div style="float:left;">
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="newMajor()">一键添加数据</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cut',plain:true" onclick="delet()">删除</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cut',plain:true" onclick="alldelet()">清空数据</a>
+	</div>
+	<div style="float:left; margin-left:50px;">
+		<input id="searchKey" class="easyui-textbox" data-options="prompt:'请输入查找的期号'" style="width:200px; height:26px;"/>
+		<a href="javascript:void(0)" onclick="queryfind()" class="easyui-linkbutton" style="width:70px;">搜 索</a>
+	</div>
+	<div style="clear:both;"></div>
 </div>
-<div style="width:100%; height:400px;">
+<div id="grigtBox" style="width:100%; height:400px; margin-top:8px;">
 	<div id="dg" style="width:100%; height:100%;"></div>
 </div>
 <div id="dlg" class="easyui-dialog" style="width:470px; height:350px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">

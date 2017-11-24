@@ -26,6 +26,18 @@ public class BaseModel<M extends Model<M>> extends Model<M>{
 		return find(sql);
 	}
 	
+	/**
+	 * ≤È’“≤¢«“∑÷“≥
+	 * @param page
+	 * @param rows
+	 * @param orderBy
+	 * @return
+	 */
+	public List<M> findByPage(String whereStr, int page, int rows,String orderBy){
+		String sql = " SELECT * FROM " + getTable().getName() +" "+whereStr+" ORDER BY "+orderBy+" DESC LIMIT "+((page-1)*rows)+", "+rows;
+		return find(sql);
+	}
+	
 	public long count(String sql){
 		List<M> datecount = find(sql);
 		return datecount.size();
