@@ -24,17 +24,16 @@ html,body{height:100%; font-size:13px; margin: 0px; padding: 0px;}
 		<div style="clear:both;"></div>
 	</div>
 </div>
-<div id="zoushiBox" style="margin:0px auto; display:block; width: 1120px;padding: 50px 0px;">
+<div id="zoushiBox" style="margin:0px auto; display:block; width: 1039px;padding: 50px 0px;">
 <table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-right:1px solid #f1f1f1;">
   <tr>
+  	<td style="width:100px;" rowspan="2" scope="col">开奖时间</td>
     <td style="width:100px;" rowspan="2" scope="col">期号</td>
     <td style="width:116px;" colspan="3" rowspan="2" scope="col">开奖号码</td>
     <!--<th colspan="6" scope="col">开奖号码公布</td>-->
     <td colspan="16" scope="col">和值</td>
     <td colspan="2" scope="col">大小</td>
     <td colspan="2" scope="col">单双</td>
-    <td colspan="2" scope="col">质合</td>
-    <td colspan="3" scope="col">路数</td>
   </tr>
   <tr>
     <td style="width:35px">03</td>
@@ -57,11 +56,6 @@ html,body{height:100%; font-size:13px; margin: 0px; padding: 0px;}
     <td style="width:35px">小</td>
     <td style="width:35px">单</td>
     <td style="width:35px">双</td>
-    <td style="width:35px">质</td>
-    <td style="width:35px">合</td>
-    <td style="width:35px">0路</td>
-    <td style="width:35px">1路</td>
-    <td style="width:35px">2路</td>
   </tr>
 </table>
 <table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;"></table>
@@ -212,7 +206,7 @@ var bigSmallDate = []; //大小的坐标结果集
 var signDoubleDate = []; //单双的坐标结果集
 <% if( dateList != null && dateList.~size > 0 ){ %>
 	<% for(item in dateList){ %>
-			date.push(formd("${item.qiNum}","${item.Num}"));
+			date.push(formd("${item.creantime}","${item.qiNum}","${item.Num}"));
 	<%}
 }%>
 
@@ -221,7 +215,7 @@ for(var j=0;j<date.length;j++){
 	var firstNum = chdate.substring(0,1);
 	var secondNum = chdate.substring(1,2);
 	var threeNum = chdate.substring(2,3);
-	$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
+	$("#zoushiPuture").append('<tr><td style="width:100px;">'+subsTime(date[j].creatTime)+'</td><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:38px; background:#FFFFEE; font-weight:700;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE; font-weight:700;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE; font-weight:700;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
 	//写开奖号码公布
 	var thArr = $("#zoushiPuture").find("tr").eq(j);
@@ -350,8 +344,9 @@ function findsearch(){
 	}); 
 }
 
-function formd(qiNum, Num){
+function formd(creatTime,qiNum, Num){
 	var jsond = {};
+	jsond.creatTime = creatTime;
 	jsond.qiNum = qiNum;
 	jsond.Num = Num;
 	return jsond;
@@ -371,6 +366,11 @@ function signDouble(allRes){
 	}else{
 		return 22;
 	}
+}
+
+function subsTime(timedate){
+	timedate = timedate.substring(11,timedate.length);
+	return timedate;
 }
 
 function writResult(allRes){
