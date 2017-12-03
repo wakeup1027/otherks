@@ -10,6 +10,8 @@
 html,body{height:100%; font-size:13px; margin: 0px; padding: 0px;}
 .titleTable td,.titleTable th{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1;}
 #zoushiPuture td{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1; height:30px;}
+#recountTable{border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;}
+#recountTable td{border-left:1px solid #f1f1f1;}
 </style>
 </head>
 
@@ -24,20 +26,18 @@ html,body{height:100%; font-size:13px; margin: 0px; padding: 0px;}
 		<div style="clear:both;"></div>
 	</div>
 </div>
-<div id="zoushiBox" style="margin:0px auto; display:block; width: 1120px;padding: 50px 0px;">
+<div id="zoushiBox" style="margin:0px auto; display:block; width:388px;padding: 50px 0px;">
 <table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-right:1px solid #f1f1f1;">
   <tr>
     <td style="width:100px;" rowspan="2" scope="col">期号</td>
-    <td style="width:116px;" colspan="3" rowspan="2" scope="col">开奖号码</td>
+    <td style="width:90px;" colspan="3" rowspan="2" scope="col">开奖号码</td>
     <!--<th colspan="6" scope="col">开奖号码公布</td>-->
-    <td colspan="16" scope="col">和值</td>
+    <td style="width:50px;" rowspan="2">和值</td>
     <td colspan="2" scope="col">大小</td>
     <td colspan="2" scope="col">单双</td>
-    <td colspan="2" scope="col">质合</td>
-    <td colspan="3" scope="col">路数</td>
   </tr>
   <tr>
-    <td style="width:35px">03</td>
+    <!--<td style="width:35px">03</td>
     <td style="width:35px">04</td>
     <td style="width:35px">05</td>
     <td style="width:35px">06</td>
@@ -52,19 +52,23 @@ html,body{height:100%; font-size:13px; margin: 0px; padding: 0px;}
     <td style="width:35px">15</td>
     <td style="width:35px">16</td>
     <td style="width:35px">17</td>
-    <td style="width:35px">18</td>
+    <td style="width:35px">18</td>-->
     <td style="width:35px">大</td>
     <td style="width:35px">小</td>
     <td style="width:35px">单</td>
     <td style="width:35px">双</td>
-    <td style="width:35px">质</td>
-    <td style="width:35px">合</td>
-    <td style="width:35px">0路</td>
-    <td style="width:35px">1路</td>
-    <td style="width:35px">2路</td>
   </tr>
 </table>
-<table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;"></table>
+<table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="width:100%; text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;"></table>
+<table id="recountTable" style="text-align:center;" border="0" cellpadding="0" cellspacing="0">
+	<tr style="height:36px;">
+		<td style="width:242px;">出现次数</td>
+		<td style="width:35px;">28</td>
+		<td style="width:35px;">20</td>
+		<td style="width:35px;">28</td>
+		<td style="width:35px;">20</td>
+	</tr>
+</table>
 <div id="canvasBox1"></div>
 <div id="canvasBox2"></div>
 <div id="canvasBox3"></div>
@@ -205,7 +209,6 @@ function fromTime(timeNum){
 	return mm+","+ss;
 }
 
-
 var date = []; //随机开奖的结果集
 var pointDate = []; //画图的结果集
 var bigSmallDate = []; //大小的坐标结果集
@@ -216,87 +219,100 @@ var signDoubleDate = []; //单双的坐标结果集
 	<%}
 }%>
 
-for(var j=0;j<date.length;j++){
-	var chdate = date[j].Num;
-	var firstNum = chdate.substring(0,1);
-	var secondNum = chdate.substring(1,2);
-	var threeNum = chdate.substring(2,3);
-	$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:38px; background:#FFFFEE;">'+firstNum+'</td><td style="width:38px; background:#FFFFEE;">'+secondNum+'</td><td style="width:38px; background:#FFFFEE;">'+threeNum+'</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
+if(date.length==0){
+	$("#zoushiPuture").append('<tr><td>数据为空，请等待开奖...</td></tr>').css("color","#999");
+	countClass(2,"xiaoNum");
+	countClass(1,"daNum");
+	countClass(3,"danNum");
+	countClass(4,"shuangNum");
+}else{
+	for(var j=0;j<date.length;j++){
+		var chdate = date[j].Num;
+		var firstNum = chdate.substring(0,1);
+		var secondNum = chdate.substring(1,2);
+		var threeNum = chdate.substring(2,3);
+		$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:90px; background:#FFFFEE; font-weight:700;">'+firstNum+','+secondNum+','+threeNum+'</td><td style="width:50px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
-	//写开奖号码公布
-	var thArr = $("#zoushiPuture").find("tr").eq(j);
-	if(j%2==0){ 
-		thArr.css("background","#f9f9f9");
-	}
-    var tdArr = thArr.find("td");
-    /*tdArr.eq(writNum(firstNum)).text(firstNum);
-    tdArr.eq(writNum(secondNum)).text(secondNum);
-	tdArr.eq(writNum(threeNum)).text(threeNum);*/
+		//写开奖号码公布
+		var thArr = $("#zoushiPuture").find("tr").eq(j);
+		if(j%2==0){ 
+			thArr.css("background","#f9f9f9");
+		}
+   	 	var tdArr = thArr.find("td");
+   	 	/*tdArr.eq(writNum(firstNum)).text(firstNum);
+    	tdArr.eq(writNum(secondNum)).text(secondNum);
+		tdArr.eq(writNum(threeNum)).text(threeNum);*/
 	
-	//写和值
-	var allRes = parseInt(firstNum)+parseInt(secondNum)+parseInt(threeNum);
-    tdArr.eq(writResult(allRes)).text(allRes);
-    tdArr.eq(writResult(allRes)).css({"background":"#3E94F1","color":"#fff"});
+		//写和值
+		var allRes = parseInt(firstNum)+parseInt(secondNum)+parseInt(threeNum);
+    	tdArr.eq(2).text(allRes);
+    	//tdArr.eq(2).css({"background":"#3E94F1","color":"#fff"});
 	
-	//整理画和值的线的坐标
-	var helfHeight = parseInt(tdArr.eq(writResult(allRes)).height())/2;
-	var helfWidth = parseInt(tdArr.eq(writResult(allRes)).width())/2;
-	var Y = parseInt(tdArr.eq(writResult(allRes)).offset().top)+helfWidth; 
-	var X = parseInt(tdArr.eq(writResult(allRes)).offset().left)+helfHeight; 
-	pointDate.push(formPointer(X,Y));
+		//整理画和值的线的坐标
+		/*var helfHeight = parseInt(tdArr.eq(writResult(allRes)).height())/2;
+		var helfWidth = parseInt(tdArr.eq(writResult(allRes)).width())/2;
+		var Y = parseInt(tdArr.eq(writResult(allRes)).offset().top)+helfWidth; 
+		var X = parseInt(tdArr.eq(writResult(allRes)).offset().left)+helfHeight; 
+		pointDate.push(formPointer(X,Y));*/
 	
-	//整理画(大小)的线的坐标
-	/*var bsHeight = parseInt(tdArr.eq(bigsamll(allRes)).height())/2;
-	var bsWidth = parseInt(tdArr.eq(bigsamll(allRes)).width())/2;
-	var bsY = parseInt(tdArr.eq(bigsamll(allRes)).offset().top)+bsWidth; 
-	var bsX = parseInt(tdArr.eq(bigsamll(allRes)).offset().left)+bsHeight; 
-	bigSmallDate.push(formPointer(bsX,bsY));*/
+		//整理画(大小)的线的坐标
+		/*var bsHeight = parseInt(tdArr.eq(bigsamll(allRes)).height())/2;
+		var bsWidth = parseInt(tdArr.eq(bigsamll(allRes)).width())/2;
+		var bsY = parseInt(tdArr.eq(bigsamll(allRes)).offset().top)+bsWidth; 
+		var bsX = parseInt(tdArr.eq(bigsamll(allRes)).offset().left)+bsHeight; 
+		bigSmallDate.push(formPointer(bsX,bsY));*/
 	
-	//整理画(单双)的线的坐标
-	/*var dsHeight = parseInt(tdArr.eq(signDouble(allRes)).height())/2;
-	var dsWidth = parseInt(tdArr.eq(signDouble(allRes)).width())/2;
-	var dsY = parseInt(tdArr.eq(signDouble(allRes)).offset().top)+dsWidth; 
-	var dsX = parseInt(tdArr.eq(signDouble(allRes)).offset().left)+dsHeight; 
-	signDoubleDate.push(formPointer(dsX,dsY));*/
+		//整理画(单双)的线的坐标
+		/*var dsHeight = parseInt(tdArr.eq(signDouble(allRes)).height())/2;
+		var dsWidth = parseInt(tdArr.eq(signDouble(allRes)).width())/2;
+		var dsY = parseInt(tdArr.eq(signDouble(allRes)).offset().top)+dsWidth; 
+		var dsX = parseInt(tdArr.eq(signDouble(allRes)).offset().left)+dsHeight; 
+		signDoubleDate.push(formPointer(dsX,dsY));*/
 	
-	//写大小
-	if(allRes<=10){
-		tdArr.eq(21).text("小");
-		tdArr.eq(21).css({"background":"#5CD38F","color":"#fff"});
-	}else if(allRes>10){
-		tdArr.eq(20).text("大");
-		tdArr.eq(20).css({"background":"#5CD38F","color":"#fff"});
-	}
+		//写大小
+		if(allRes<=10){
+			tdArr.eq(4).text("小").addClass("xiaoNum");
+			tdArr.eq(4).css({"background":"#5CD38F","color":"#fff"});
+		}else if(allRes>10){
+			tdArr.eq(3).text("大").addClass("daNum");
+			tdArr.eq(3).css({"background":"#5CD38F","color":"#fff"});
+		}
 	
-	//写单双
-	if(allRes%2==0){
-		tdArr.eq(23).text("双");
-		tdArr.eq(23).css({"background":"#FF9C00","color":"#fff"});
-	}else{
-		tdArr.eq(22).text("单");
-		tdArr.eq(22).css({"background":"#FF9C00","color":"#fff"});
-	}
+		//写单双
+		if(allRes%2==0){
+			tdArr.eq(6).text("双").addClass("shuangNum");
+			tdArr.eq(6).css({"background":"#FF9C00","color":"#fff"});
+		}else{
+			tdArr.eq(5).text("单").addClass("danNum");
+			tdArr.eq(5).css({"background":"#FF9C00","color":"#fff"});
+		}
 	
-	//写质合
-	if(allRes==3||allRes==5||allRes==7||allRes==11||allRes==13||allRes==17){
-		tdArr.eq(24).text("质");
-		tdArr.eq(24).css({"background":"#F64C56","color":"#fff"});
-	}else{
-		tdArr.eq(25).text("合");
-		tdArr.eq(25).css({"background":"#F64C56","color":"#fff"});
-	}
+		//写质合
+		if(allRes==3||allRes==5||allRes==7||allRes==11||allRes==13||allRes==17){
+			tdArr.eq(24).text("质");
+			tdArr.eq(24).css({"background":"#F64C56","color":"#fff"});
+		}else{
+			tdArr.eq(25).text("合");
+			tdArr.eq(25).css({"background":"#F64C56","color":"#fff"});
+		}
 	
-	//写路数
-	if(allRes%3==0){
-		tdArr.eq(26).text("0");
-		tdArr.eq(26).css({"background":"#9C58CC","color":"#fff"});
-	}else if(allRes%3==1){
-		tdArr.eq(27).text("1");
-		tdArr.eq(27).css({"background":"#9C58CC","color":"#fff"});
-	}else if(allRes%3==2){
-		tdArr.eq(28).text("2");
-		tdArr.eq(28).css({"background":"#9C58CC","color":"#fff"});
-	}
+		//写路数
+		if(allRes%3==0){
+			tdArr.eq(26).text("0");
+			tdArr.eq(26).css({"background":"#9C58CC","color":"#fff"});
+		}else if(allRes%3==1){
+			tdArr.eq(27).text("1");
+			tdArr.eq(27).css({"background":"#9C58CC","color":"#fff"});
+		}else if(allRes%3==2){
+			tdArr.eq(28).text("2");
+			tdArr.eq(28).css({"background":"#9C58CC","color":"#fff"});
+		}
+		
+		countClass(2,"xiaoNum");
+		countClass(1,"daNum");
+		countClass(3,"danNum");
+		countClass(4,"shuangNum");
+	}	
 }
 
 $(function(){
@@ -371,6 +387,11 @@ function signDouble(allRes){
 	}else{
 		return 22;
 	}
+}
+
+function subsTime(timedate){
+	timedate = timedate.substring(11,timedate.length);
+	return timedate;
 }
 
 function writResult(allRes){
@@ -458,8 +479,11 @@ function drawLine2(x1,y1,x2,y2,index,objNum){
 	ctx.stroke();
 }
 
+function countClass(num,calssName){
+	$("#recountTable").find("tr").eq(0).find("td").eq(num).text($("."+calssName).length);
+}
+
 $(function(){
- 
 $("#zoushiMap").click(function(){
 	$("#zoushiBox").show();
 	$("#resuBox").hide();

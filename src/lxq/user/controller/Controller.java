@@ -8,6 +8,7 @@ import lxq.user.util.DateUtil;
 import lxq.user.util.FormString;
 import lxq.user.util.Tiemer;
 import lxq.user.util.TiemerSecond;
+import lxq.user.util.cache.CacheUntil;
 
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseController;
@@ -297,6 +298,18 @@ public class Controller extends BaseController {
 		lo.update();
 		JSONObject json = new JSONObject();
 		json.put("state", "success");
+		renderJson(json.toJSONString());
+	}
+	
+	//==========清理缓存=================
+	public void cacheHtml(){
+		render(PATH+"/cache.html");
+	}
+	
+	public void clearCache(){
+		JSONObject json = new JSONObject();
+		json.put("state", "success");
+		CacheUntil.get("LotteryLog").clear(); //清理缓存
 		renderJson(json.toJSONString());
 	}
 	
