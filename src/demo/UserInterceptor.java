@@ -13,6 +13,14 @@ public class UserInterceptor implements Interceptor{
 		Controller controller = ai.getController();
 
 		HttpServletRequest request = controller.getRequest();
+		/*String sdsd = request.getHeader("x-forwarded-for");
+		String sdsd1 = request.getHeader("Proxy-Client-IP");
+		String sdsd2 = request.getHeader("WL-Proxy-Client-IP");
+		String sdsd3 = request.getRemoteAddr();
+		System.out.println(sdsd);
+		System.out.println(sdsd1);
+		System.out.println(sdsd2);
+		System.out.println(sdsd3);*/
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("loginUser");
 		if (obj == null) {

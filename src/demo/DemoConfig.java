@@ -29,6 +29,8 @@ public class DemoConfig extends JFinalConfig{
 		me.setDevMode(true);
 		//设置解析渲染html的工厂
 		me.setViewType(ViewType.JSP); // 设置视图类型为Jsp，否则默认为FreeMarker
+		me.setError404View("/computer/error/404.html");
+		
 		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
 		rf.config();
 		me.setRenderFactory(rf);
