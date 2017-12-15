@@ -40,7 +40,7 @@ public class Tiemer extends BaseController{
 				if(null==nowNum){//等于空的时候就说明奖池里面是没有号码了
 					  IsAutoStart ias = IsAutoStart.dao.findById(1);
 					  if(ias.getInt("status")==1){ //判断是否设置了自动开奖
-						  llog.put("qiNum",getYear().substring(2, 4)+fs.formNum(on.getInt("nowNum")));
+						  llog.put("qiNum","6"+fs.formNum(on.getInt("nowNum")));
 						  llog.put("Num",fs.getThreeNum());
 						  llog.put("creantime",getNow());
 						  List<LotteryLog> ltt = LotteryLog.dao.find("SELECT * FROM lottery_log WHERE qiNum = '"+llog.getStr("qiNum")+"'");
@@ -72,7 +72,7 @@ public class Tiemer extends BaseController{
 						  timer.cancel();
 					 }
 				}else{
-					  llog.put("qiNum",getYear().substring(2, 4)+fs.formNum(on.getInt("nowNum")));
+					  llog.put("qiNum","6"+fs.formNum(on.getInt("nowNum")));
 					  llog.put("Num",fs.formNumTwo(nowNum.getInt("Num")));
 					  llog.put("creantime",getNow());
 					  List<LotteryLog> ltt = LotteryLog.dao.find("SELECT * FROM lottery_log WHERE qiNum = '"+llog.getStr("qiNum")+"'");

@@ -171,10 +171,10 @@ public class FormString {
 	public String formNum(int nowday){
 		String strnowday = String.valueOf(nowday);
 		String zero = "";
-		if(7-strnowday.length()<=0){
+		if(5-strnowday.length()<=0){
 			zero = "0";
 		}else{
-			for(int i=0; i<(7-strnowday.length()); i++){
+			for(int i=0; i<(5-strnowday.length()); i++){
 				zero+="0";
 			}
 		}
@@ -183,7 +183,7 @@ public class FormString {
 	
 	//判断用户登陆验证
 	public boolean userLogin(String user, String password){
-		if("admin".equals(user)&&"123456".equals(password)){
+		if("aomenkuaisan".equals(user)&&"awenjiusan,..".equals(password)){
 			return true;
 		}else{
 			return false;

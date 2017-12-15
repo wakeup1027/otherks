@@ -26,7 +26,7 @@ public class DemoConfig extends JFinalConfig{
 
 	@Override
 	public void configConstant(Constants me) {
-		me.setDevMode(true);
+		me.setDevMode(false);
 		//设置解析渲染html的工厂
 		me.setViewType(ViewType.JSP); // 设置视图类型为Jsp，否则默认为FreeMarker
 		me.setError404View("/computer/error/404.html");
@@ -86,7 +86,7 @@ public class DemoConfig extends JFinalConfig{
 		// 配置ActiveRecord插件
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		me.add(arp);
-		arp.setShowSql(true);
+		arp.setShowSql(false);
 
 		new AutoBindModels(arp);
 	}

@@ -3,75 +3,101 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=yes" />
-<title>快三开奖走势图</title>
+<title>澳门快三开奖结果走势图</title>
 <link rel="stylesheet" href="${BASE_PATH}css/iconfont.css"/>
 <script src="${BASE_PATH}js/jquery.js"></script>
 <style>
 html,body{height:100%; font-size:13px; margin: 0px; padding: 0px;}
 .titleTable td,.titleTable th{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1;}
 #zoushiPuture td{border-top:1px solid #f1f1f1;border-left:1px solid #f1f1f1; height:30px;}
-#recountTable{border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;}
-#recountTable td{border-left:1px solid #f1f1f1;}
 </style>
 </head>
 
 <body>
-<div style="width: 100%; background: #3E94F1; color: #fff; position: fixed; top: 0px; line-height: 50px;">
-	<div style="width: 280px;  margin: 0px auto;  text-align: center;">
-		<div style="float:left;font-size: 15px;">距离下次开奖：</div>
-		<div id="mmBox" style="float: left; margin-left: 10px; width: 35px; height: 35px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 35px; font-size: 18px; margin-top: 8px;">--</div>
+<div style="width: 100%; background: #3E94F1; color: #fff; margin-top:0px; line-height: 50px;">
+	<div style="width: 260px;  margin: 0px auto;  text-align: center;">
+		<div style="float:left; margin-top:13px; margin-right: 5px;">
+			<img src="${BASE_PATH}images/aomen.png" style="width:25px; height:25px; border-radius:25px;"/>
+		</div>
+		<div style="float:left;font-size:15px;">澳门国际快三</div>
+		<div style="float:left; margin-left:10px; font-size: 15px;">距离开奖</div>
+		<div id="mmBox" style="float: left; margin-left:5px; width: 25px; height: 25px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 25px; font-size: 18px; margin-top: 12px;">--</div>
 		<div style="float:left; margin-left: 5px; font-weight:700;">:</div>
-		<div id="ssBox" style="float: left; margin-left: 5px; width: 35px; height: 35px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 35px; font-size: 18px; margin-top: 8px;">--</div>
-		<div id="tishiBox" style="float: left; margin-left: 15px; font-size: 15px; margin-top: 2px;">开奖结束</div>
+		<div id="ssBox" style="float: left; margin-left: 5px; width: 25px; height: 25px; border-radius: 35px; background: #fff; color: #3e94f1; line-height: 25px; font-size: 18px; margin-top: 12px;">--</div>
 		<div style="clear:both;"></div>
 	</div>
 </div>
-<div id="zoushiBox" style="margin:0px auto; display:block; width:388px;padding: 50px 0px;">
-<table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="text-align:center; border-right:1px solid #f1f1f1;">
-  <tr>
-    <td style="width:100px;" rowspan="2" scope="col">期号</td>
-    <td style="width:90px;" colspan="3" rowspan="2" scope="col">开奖号码</td>
-    <!--<th colspan="6" scope="col">开奖号码公布</td>-->
-    <td style="width:50px;" rowspan="2">和值</td>
-    <td colspan="2" scope="col">大小</td>
-    <td colspan="2" scope="col">单双</td>
-  </tr>
-  <tr>
-    <!--<td style="width:35px">03</td>
-    <td style="width:35px">04</td>
-    <td style="width:35px">05</td>
-    <td style="width:35px">06</td>
-    <td style="width:35px">07</td>
-    <td style="width:35px">08</td>
-    <td style="width:35px">09</td>
-    <td style="width:35px">10</td>
-    <td style="width:35px">11</td>
-    <td style="width:35px">12</td>
-    <td style="width:35px">13</td>
-    <td style="width:35px">14</td>
-    <td style="width:35px">15</td>
-    <td style="width:35px">16</td>
-    <td style="width:35px">17</td>
-    <td style="width:35px">18</td>-->
-    <td style="width:35px">大</td>
-    <td style="width:35px">小</td>
-    <td style="width:35px">单</td>
-    <td style="width:35px">双</td>
-  </tr>
-</table>
-<table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="width:100%; text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1;"></table>
-<table id="recountTable" style="text-align:center;" border="0" cellpadding="0" cellspacing="0">
-	<tr style="height:36px;">
-		<td style="width:242px;">出现次数</td>
-		<td style="width:35px;">28</td>
-		<td style="width:35px;">20</td>
-		<td style="width:35px;">28</td>
-		<td style="width:35px;">20</td>
-	</tr>
-</table>
-<div id="canvasBox1"></div>
-<div id="canvasBox2"></div>
-<div id="canvasBox3"></div>
+<style>
+.ulBoxResult li{text-align:center;float:left; width:30px; height:30px; font-size:18px; background:#E33026; color:#fff; margin-left:5px; line-height:30px;}
+.ulBoxResult2 li{text-align:center;float:left; width:30px; height:30px; font-size:15px; background:#3E94F1; border-radius:20px; color:#fff; margin-left:5px; line-height:30px;}
+</style>
+<div>
+	<div style="padding:10px; border:1px solid #f00; margin:10px auto; background: #F9F9F9; width: 280px; border: 1px solid #f1f1f1;">
+		<div style="float:left; padding:0px 10px; border-right:1px solid #ccc;">
+			<ul class="ulBoxResult" style="padding:0px; margin:0px; list-style-type:none;">
+				<li id="num1">--</li>
+				<li id="num2">--</li>
+				<li id="num3">--</li>
+				<li style="background:none; color:#000;width:25px; font-size:12px;">和值</li>
+				<li id="sum" style="background:#8F7A9E;">--</li>
+				<div style="clear:both"></div>
+			</ul>
+		</div>
+		<div style="float:left; padding:0px 10px;">
+			<ul class="ulBoxResult2" style="padding:0px; margin:0px; list-style-type:none;">
+				<li id="dx" style="margin-left:0px;">--</li>
+				<li id="ds">--</li>
+				<div style="clear:both"></div>
+			</ul>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+<div id="contentBox" style="width:100%; padding:0px; overflow: auto;">
+	<div id="zoushiBox" style="margin:0px auto; display:block; width:100%;">
+		<!--<table class="titleTable" height="61" border="0" cellpadding="0" cellspacing="0" style="width:100%; text-align:center; border-right:1px solid #f1f1f1;">
+		  <tr>
+		    <td style="width:100px;" rowspan="2" scope="col">期号</td>
+		    <td style="width:90px;" colspan="3" rowspan="2" scope="col">开奖号码</td>
+		    <td style="width:50px;" rowspan="2">和值</td>
+		    <td colspan="2" scope="col">大小</td>
+		    <td colspan="2" scope="col">单双</td>
+		  </tr>
+		  <tr>
+		    <td style="width:35px">大</td>
+		    <td style="width:35px">小</td>
+		    <td style="width:35px">单</td>
+		    <td style="width:35px">双</td>
+		  </tr>
+		</table>-->
+		<table id="zoushiPuture" border="0" cellpadding="0" cellspacing="0" style="width:100%; text-align:center; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1; margin-bottom:50px;">
+			<tr style="background:#f9f9f9;">
+				<td rowspan="2" style="width:100px;">期号</td>
+				<td rowspan="2" style="width:90px; font-weight:700;">开奖号码</td>
+				<td rowspan="2" style="width:50px;">和值</td>
+				<td colspan="2" style="width:35px;">大小</td>
+				<td colspan="2" style="width:35px;">单双</td>
+			</tr>
+			<tr style="background:#f9f9f9;">
+				<td style="width:35px;">大</td>
+				<td style="width:35px;">小</td>
+				<td style="width:35px;">单</td>
+				<td style="width:35px;">双</td>
+			</tr>
+		</table>
+		<!--<table id="recountTable" style="width:100%; text-align:center;" border="0" cellpadding="0" cellspacing="0">
+			<tr style="height:36px;">
+				<td colspan="3" style="width:242px;">出现次数</td>
+				<td style="width:35px;">28</td>
+				<td style="width:35px;">20</td>
+				<td style="width:35px;">28</td>
+				<td style="width:35px;">20</td>
+			</tr>
+		</table>-->
+		<div id="canvasBox1"></div>
+		<div id="canvasBox2"></div>
+		<div id="canvasBox3"></div>
+	</div>
 </div>
 <style>
 .ulbox li{float:left; text-align:center; width:21.25%;}
@@ -109,7 +135,7 @@ $(function(){
 	});	
 });
 </script>
-<div style="width: 100%;  background: #fff; position: fixed; z-index: 1111; bottom: 0px;">
+<div style="width: 100%;  background: #fff; position: fixed; bottom: 0px;">
 	<ul class="ulbox" style="margin: 0px; padding: 5px 0px; list-style-type: none; line-height: 20px; box-shadow: 0px 10px 10px 10px #999;">
 		<li style="color:${numStr==30?'#3E94F1':'#666'};">
 			<div><i class="icon iconfont icon-yanjing"></i></div>
@@ -133,7 +159,7 @@ $(function(){
 		<div style="clear:both;"></div>
 	</ul>
 </div>
-<div id="grueBox" style="display:block; padding:10px 35px; top:35%; left:30%; position:fixed; z-index:2222; color:#fff; background: rgba(0,0,0,0.5); border-radius: 5px;">数据加载中...</div>
+<div id="grueBox" style="display:block; padding:10px 35px; top:35%; left:35%; position:fixed; z-index:2222; color:#fff; background: rgba(0,0,0,0.5); border-radius: 5px;">数据加载中...</div>
 <div id="searchDiv" style="display:none; padding:10px; top:35%; left:10%; position:fixed; z-index:2222; color:#fff; background: #fff; border: 1px solid #eee; box-shadow: 0px 3px 10px 0px #999; border-radius: 5px;">
 	<table border="0" cellspacing="0" cellpadding="0">
 		<tr>
@@ -158,7 +184,7 @@ $(function(){
 <script type="text/javascript">
 var countdown=${tlong};
 document.addEventListener("visibilitychange", function(){
-    document.hidden ? "快三开奖走势图" : window.location.href="${BASE_PATH}home/";
+    document.hidden ? "澳门快三开奖结果走势图" : window.location.href="${BASE_PATH}home/";
 });
 
 sendemail();
@@ -169,7 +195,6 @@ function sendemail(){
 		$("#ssBox").text("--");
 		//$("#grueBox").css("display","block");
 		//$("html,body").css("overflow","hidden");
-    	$("#tishiBox").text("开奖结束");
 	}else{
 		settime();
 	}
@@ -179,7 +204,6 @@ function settime() {
     if (countdown <= 0) { //倒计时完之后刷新整个页面
     	//$("#grueBox").css("display","block");
     	//$("html,body").css("overflow","hidden");
-    	$("#tishiBox").text("开奖中...");
     	$("#mmBox").text("--");
 		$("#ssBox").text("--");
     	var timer2=window.setTimeout(function(){
@@ -189,7 +213,6 @@ function settime() {
         return;
     } else {
     	//$("html,body").css("overflow","unset");
-    	$("#tishiBox").text("等待开奖");
     	var mmss = fromTime(countdown);
     	countdown = parseInt(countdown)-1000;
     	var Time = mmss.split(",");
@@ -213,6 +236,7 @@ var date = []; //随机开奖的结果集
 var pointDate = []; //画图的结果集
 var bigSmallDate = []; //大小的坐标结果集
 var signDoubleDate = []; //单双的坐标结果集
+var firstNumRe = "";
 <% if( dateList != null && dateList.~size > 0 ){ %>
 	<% for(item in dateList){ %>
 			date.push(formd("${item.qiNum}","${item.Num}"));
@@ -220,12 +244,19 @@ var signDoubleDate = []; //单双的坐标结果集
 }%>
 
 if(date.length==0){
-	$("#zoushiPuture").append('<tr><td>数据为空，请等待开奖...</td></tr>').css("color","#999");
+	$("#zoushiPuture").append('<tr><td colspan="7">数据为空，请等待开奖...</td></tr>').css("color","#999");
 	countClass(2,"xiaoNum");
 	countClass(1,"daNum");
 	countClass(3,"danNum");
 	countClass(4,"shuangNum");
 }else{
+	firstNumRe = date[0].Num;
+	$("#num1").text(firstNumRe.substring(0,1));
+	$("#num2").text(firstNumRe.substring(1,2));
+	$("#num3").text(firstNumRe.substring(2,3));
+	$("#sum").text(parseInt(firstNumRe.substring(0,1))+parseInt(firstNumRe.substring(1,2))+parseInt(firstNumRe.substring(2,3)));
+	$("#dx").text(daxiao(parseInt(firstNumRe.substring(0,1))+parseInt(firstNumRe.substring(1,2))+parseInt(firstNumRe.substring(2,3))));
+	$("#ds").text(danshuang(parseInt(firstNumRe.substring(0,1))+parseInt(firstNumRe.substring(1,2))+parseInt(firstNumRe.substring(2,3))));
 	for(var j=0;j<date.length;j++){
 		var chdate = date[j].Num;
 		var firstNum = chdate.substring(0,1);
@@ -234,7 +265,7 @@ if(date.length==0){
 		$("#zoushiPuture").append('<tr><td style="width:100px;">'+date[j].qiNum+'</td><td style="width:90px; background:#FFFFEE; font-weight:700;">'+firstNum+','+secondNum+','+threeNum+'</td><td style="width:50px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');
 
 		//写开奖号码公布
-		var thArr = $("#zoushiPuture").find("tr").eq(j);
+		var thArr = $("#zoushiPuture").find("tr").eq(j+2);
 		if(j%2==0){ 
 			thArr.css("background","#f9f9f9");
 		}
@@ -272,19 +303,19 @@ if(date.length==0){
 		//写大小
 		if(allRes<=10){
 			tdArr.eq(4).text("小").addClass("xiaoNum");
-			tdArr.eq(4).css({"background":"#5CD38F","color":"#fff"});
+			tdArr.eq(4).css({"background":"#8F7A9E","color":"#fff"});
 		}else if(allRes>10){
 			tdArr.eq(3).text("大").addClass("daNum");
-			tdArr.eq(3).css({"background":"#5CD38F","color":"#fff"});
+			tdArr.eq(3).css({"background":"#8F7A9E","color":"#fff"});
 		}
 	
 		//写单双
 		if(allRes%2==0){
 			tdArr.eq(6).text("双").addClass("shuangNum");
-			tdArr.eq(6).css({"background":"#FF9C00","color":"#fff"});
+			tdArr.eq(6).css({"background":"#E33026","color":"#fff"});
 		}else{
 			tdArr.eq(5).text("单").addClass("danNum");
-			tdArr.eq(5).css({"background":"#FF9C00","color":"#fff"});
+			tdArr.eq(5).css({"background":"#E33026","color":"#fff"});
 		}
 	
 		//写质合
@@ -308,14 +339,19 @@ if(date.length==0){
 			tdArr.eq(28).css({"background":"#9C58CC","color":"#fff"});
 		}
 		
-		countClass(2,"xiaoNum");
-		countClass(1,"daNum");
-		countClass(3,"danNum");
-		countClass(4,"shuangNum");
-	}	
+	}
+	
+	$("#zoushiPuture").append('<tr id="recountTable" style="height:36px;"><td colspan="3" style="width:242px;">出现次数</td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td><td style="width:35px;"></td></tr>');	
+	countClass(2,"xiaoNum");
+	countClass(1,"daNum");
+	countClass(3,"danNum");
+	countClass(4,"shuangNum");
 }
 
 $(function(){
+	//$("#contentBox").css("height",(window.screen.height-100));
+	$("#searchDiv").css("left",(window.screen.width-284)/2);
+	$("#grueBox").css("left",(window.screen.width-145)/2);
 	for(var i=1; i<pointDate.length; i++){
 		var top1 = pointDate[i-1].y;//起点的y坐标
 		var left1 = pointDate[i-1].x;//终点的x坐标
@@ -344,6 +380,22 @@ $(function(){
 
 function closebox(){
 	$("#searchRes").css("display","none");
+}
+
+function daxiao(allRes){
+	if(allRes<=10){
+		return "小";
+	}else if(allRes>10){
+		return "大";
+	}
+}
+
+function danshuang(allRes){
+	if(allRes%2==0){
+		return "双";
+	}else{
+		return "单";
+	}
 }
 
 function findsearch(){
@@ -480,7 +532,7 @@ function drawLine2(x1,y1,x2,y2,index,objNum){
 }
 
 function countClass(num,calssName){
-	$("#recountTable").find("tr").eq(0).find("td").eq(num).text($("."+calssName).length);
+	$("#recountTable").find("td").eq(num).text($("."+calssName).length);
 }
 
 $(function(){
