@@ -20,7 +20,7 @@ $(function(){
 	$('#dg').datagrid({
 	    height: '100%',
 	    fit:true,
-	    url: '${BASE_PATH}admin/getoverdate.html',
+	    url: '${BASE_PATH}adminstrcentent/getoverdate.html',
 	    method: 'POST',
 	    striped: true,
 	    nowrap: true,
@@ -46,7 +46,7 @@ var numUrl = "";
 
 function newMajor(){
 	$("#importfm").form('clear');
-	numUrl = "${BASE_PATH}admin/iptAutoNum";
+	numUrl = "${BASE_PATH}adminstrcentent/iptAutoNum";
 	$('#dlg').dialog('open').dialog('setTitle','一键添加数据');
 }
 
@@ -88,7 +88,7 @@ function delet(){
 	}
 	$.messager.confirm('删除提醒','确定删除选中的数据吗？',function(r){
     	if (r){
-			$.post("${BASE_PATH}admin/delOldNum",{"idStr":idString.substring(0,idString.length-1)},function(res){
+			$.post("${BASE_PATH}adminstrcentent/delOldNum",{"idStr":idString.substring(0,idString.length-1)},function(res){
 				if(res.msg==1||res.msg=="1"){
 					$('#dg').datagrid('reload');
 				}else{
@@ -103,7 +103,7 @@ function alldelet(){
 	$.messager.confirm("系统提示","确定要清空这些记录吗？注意：期号也会重新从1开始计算",function(r){
 	    if (r){
 			$.ajax({
-				url:"${BASE_PATH}admin/cleatLogNum",
+				url:"${BASE_PATH}adminstrcentent/cleatLogNum",
 				type:"POST",
 				dataType:"json",
 				success: function(res) {
@@ -123,7 +123,7 @@ function queryfind(){
 	$('#dg').datagrid({
 	    height: '100%',
 	    fit:true,
-	    url: '${BASE_PATH}admin/searchDate.html',
+	    url: '${BASE_PATH}adminstrcentent/searchDate.html',
 	    queryParams:{"qiNum":key},
 	    method: 'POST',
 	    striped: true,

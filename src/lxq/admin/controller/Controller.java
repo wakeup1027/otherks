@@ -15,7 +15,7 @@ import com.jfinal.aop.Clear;
 
 import demo.UserInterceptor;
 
-@ControllerBind(controllerKey = "/home")
+@ControllerBind(controllerKey = "/")
 @Clear(UserInterceptor.class)
 public class Controller extends BaseController{
 	
@@ -127,7 +127,7 @@ public class Controller extends BaseController{
 		if(new FormString().userLogin(getPara("userName"), getPara("password"))){
 			setSessionAttr("loginUser", getPara("userName"));
 			setAttr("mes", "");
-			redirect("/admin.html");
+			redirect("/adminstrcentent.html");
 		}else{
 			setAttr("mes", "用户名或者密码错误，请联系管理员获取授权！");
 			render("/computer/login.html");

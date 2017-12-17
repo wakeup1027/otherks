@@ -26,7 +26,7 @@ import com.jfinal.plugin.activerecord.Db;
 import demo.UserInterceptor;
 
 @Before(UserInterceptor.class)
-@ControllerBind(controllerKey = "/admin")
+@ControllerBind(controllerKey = "/adminstrcentent")
 public class Controller extends BaseController {
 	private static final String PATH = "/adminTwo";
 	
@@ -128,6 +128,9 @@ public class Controller extends BaseController {
 			ltt.set("id", idch);
 			ltt.delete();
 		}
+		OpenNum onum = OpenNum.dao.findById(1);
+		onum.set("nowNum", onum.getInt("nowNum")-chStr.length);
+		onum.update();
 		json.put("msg", 1);
 		renderJson(json.toJSONString());
 	}

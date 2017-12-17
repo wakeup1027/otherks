@@ -55,7 +55,7 @@ function start(){
 if(isstart){
 	isstart = false;
 	$.ajax({
-		url:"${BASE_PATH}admin/start",
+		url:"${BASE_PATH}adminstrcentent/start",
 		type:"POST",
 		dataType:"json",
 		success: function(res) {
@@ -73,7 +73,7 @@ function stopt(){
 if(isstops){
 	isstops = false;
 	$.ajax({
-		url:"${BASE_PATH}admin/stop",
+		url:"${BASE_PATH}adminstrcentent/stop",
 		type:"POST",
 		dataType:"json",
 		success: function(res) {

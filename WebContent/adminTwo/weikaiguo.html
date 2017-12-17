@@ -23,7 +23,7 @@ $(function(){
 	$('#dg').datagrid({
 	    height: '100%',
 	    fit:true,
-	    url: '${BASE_PATH}admin/getweidate.html',
+	    url: '${BASE_PATH}adminstrcentent/getweidate.html',
 	    method: 'POST',
 	    striped: true,
 	    nowrap: true,
@@ -47,7 +47,7 @@ $(function(){
 var numUrl = "";
 function newMajor(){
 	$("#importfm").form('clear');
-	numUrl = "${BASE_PATH}admin/saveNum";
+	numUrl = "${BASE_PATH}adminstrcentent/saveNum";
 	$('#dlg').dialog('open').dialog('setTitle','录入开奖号码');
 }
 
@@ -84,7 +84,7 @@ function delet(){
 	}
 	$.messager.confirm('删除提醒','确定删除选中的数据吗？',function(r){
     	if (r){
-			$.post("${BASE_PATH}admin/delet",{"idStr":idString.substring(0,idString.length-1)},function(res){
+			$.post("${BASE_PATH}adminstrcentent/delet",{"idStr":idString.substring(0,idString.length-1)},function(res){
 				if(res.msg==1||res.msg=="1"){
 					$('#dg').datagrid('reload');
 				}else{
