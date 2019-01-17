@@ -24,7 +24,7 @@ public class TiemerSecond extends BaseController{
 				}else{
 					TimeNumOver nowNum = TimeNumOver.dao.findById(1);
 					if(nowNum.getInt("number")<=1){
-						nowNum.set("number", 600);
+						nowNum.set("number", 300);
 					}else{
 						nowNum.set("number", nowNum.getInt("number")-2);
 					}

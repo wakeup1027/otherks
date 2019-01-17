@@ -9,10 +9,7 @@ import java.util.Random;
  */
 public class FormString {
 	private static final String[] StrNum= {"1","2","3","4","5","6"};//随机开奖
-	/*private static final String[] Small = {"111","112","113","114","115","116","122","123","124","125","126","133","134","135","136","144","145","222","223","224","225","226","233","234","235","244","333","334"};
-	private static final String[] Bigger ={"146","155","156","166","236","245","246","255","256","266","335","336","344","345","346","355","356","366","444","445","446","455","456","466","555","556","566","666"};
-	private static final String[] Single ={"112","114","116","122","124","126","134","136","144","222","224","226","234","244","334","146","156","166","236","246","256","266","336","344","346","356","366","444","446","456","466","556","566","666"};
-	private static final String[] Double ={"111","113","115","123","125","133","135","145","223","225","233","235","333","155","245","255","335","345","355","445","455","555"};*/
+	
 	//获取第一个数
 	public String firstNum(String Num){
 		String StrNum = "";
@@ -183,7 +180,7 @@ public class FormString {
 	
 	//判断用户登陆验证
 	public boolean userLogin(String user, String password){
-		if("aomenkuaisan".equals(user)&&"awenjiusan,..".equals(password)){
+		if("admin".equals(user)&&"123456".equals(password)){
 			return true;
 		}else{
 			return false;

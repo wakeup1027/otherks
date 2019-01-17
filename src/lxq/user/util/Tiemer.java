@@ -53,7 +53,7 @@ public class Tiemer extends BaseController{
 						  
 						  //重新开始计时
 						  TimeNumOver tlong = TimeNumOver.dao.findById(1);
-						  tlong.set("number", 600);
+						  tlong.set("number", 300);
 						  tlong.update();
 						  
 						  //重新开始计算期数
@@ -89,7 +89,7 @@ public class Tiemer extends BaseController{
 							
 							//重新开始计时
 							TimeNumOver tlong = TimeNumOver.dao.findById(1);
-							tlong.set("number", 600);
+							tlong.set("number", 300);
 							tlong.update();
 					  }
 				}
@@ -97,7 +97,7 @@ public class Tiemer extends BaseController{
 
 	      }
 	      
-	    }, 600000, 600000);
+	    }, 300000, 300000);
 	}
 	
 	public static boolean StopTiemer(){
